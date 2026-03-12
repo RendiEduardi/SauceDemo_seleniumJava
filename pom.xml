@@ -16,6 +16,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <properties>
+        <maven.jar.skip>true</maven.jar.skip>
+    </properties>
+
     <dependencies>
         <!-- Selenium -->
         <dependency>
