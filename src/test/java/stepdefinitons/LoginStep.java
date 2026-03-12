@@ -8,6 +8,7 @@ import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class LoginStep {
 
@@ -15,7 +16,15 @@ public class LoginStep {
 
     @Given("User navigated to login page")
     public void user_navigated_to_login_page() {
-        driver = new ChromeDriver();
+
+        ChromeOptions options = new ChromeOptions();
+
+        options.addArguments("--disable-notifications");
+        options.addArguments("--disable-infobars");
+        options.addArguments("--disable-save-password-bubble");
+        options.addArguments("--disable-features=PasswordManagerEnabled");
+
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/");
     }
