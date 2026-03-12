@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.And;
+import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -36,6 +37,8 @@ public class LoginStep {
 
     @Then("User in homepage menu")
     public void user_in_homepage_menu() {
-        driver.findElement(By.id("inventory_container")).isDisplayed();
+        //driver.findElement(By.id("inventory_containe")).isDisplayed();
+        boolean isDisplayed = driver.findElement(By.id("inventory_container")).isDisplayed();
+        Assert.assertTrue("User sukses masuk homepage", isDisplayed);
     }
 }
