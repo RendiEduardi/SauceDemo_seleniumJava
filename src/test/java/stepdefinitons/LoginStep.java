@@ -31,7 +31,7 @@ public class LoginStep {
 
     @When("User enters username {string}")
     public void user_enters_username(String username) {
-        driver.findElement(By.id("user-name")).sendKeys(username) //test
+        driver.findElement(By.id("user-name")).sendKeys(username);
     }
 
     @And("User enters password {string}")
