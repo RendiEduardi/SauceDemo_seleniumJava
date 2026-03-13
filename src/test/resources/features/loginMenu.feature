@@ -8,3 +8,9 @@
       And User enters password "secret_sauce"
       And User clicks login
       Then User in homepage menu
+
+    #@select_cart
+    #Scenario: User click menu cart
+      #Given User in homepage menu
+      #When User clicks menu cart
+      #Then User in cart page

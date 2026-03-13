@@ -42,6 +42,7 @@ public class LoginStep {
     @And("User clicks login")
     public void user_clicks_login() {
         driver.findElement(By.id("login-button")).click();
+        //driver.wait(1000);
     }
 
     @Then("User in homepage menu")
