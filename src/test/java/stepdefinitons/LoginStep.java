@@ -36,7 +36,7 @@ public class LoginStep {
 
     @And("User enters password {string}")
     public void user_enters_password(String password) {
-        driver.findElement(By.id("password")).sendKeys(password) //demo
+        driver.findElement(By.id("password")).sendKeys(password);
     }
 
     @And("User clicks login")
