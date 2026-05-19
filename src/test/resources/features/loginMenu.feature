@@ -9,8 +9,14 @@
       And User clicks login
       Then User in homepage menu
 
-    #@select_cart
-    #Scenario: User click menu cart
-      #Given User in homepage menu
-      #When User clicks menu cart
-      #Then User in cart page
+    @add_cart
+    Scenario: User add product to cart
+      Given User navigated to login page
+      When User enters username "standard_user"
+      And User enters password "secret_sauce"
+      And User clicks login
+      Then User in homepage menu
+      When User adds product "Sauce Labs Backpack" to cart
+      Then Cart badge should show "1"
+      When User clicks menu cart
+      Then User should see product "Sauce Labs Backpack" in cart page
