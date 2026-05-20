@@ -54,7 +54,7 @@ public class LoginStep {
 
     @And("User enters password {string}")
     public void user_enters_password(String password) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password"))).sendKeys(password);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password"))).sendKeys(password); //note
     }
 
     @And("User clicks login")
