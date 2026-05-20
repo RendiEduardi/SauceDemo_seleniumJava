@@ -49,7 +49,7 @@ public class LoginStep {
 
     @When("User enters username {string}")
     public void user_enters_username(String username) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name"))).sendKeys(username) //test
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name"))).sendKeys(username) //test lagi
     }
 
     @And("User enters password {string}")
