@@ -53,10 +53,24 @@ public class LoginStep {
         Hooks.wait.until(ExpectedConditions.textToBe(addToCartButton, "Remove"));
     }
 
+    @When("User removes product {string} from cart")
+    public void user_removes_product_from_cart(String productName) {
+        By removeButton = By.xpath("//div[contains(@class,'inventory_item') or contains(@class,'cart_item')][.//div[contains(@class,'inventory_item_name') and normalize-space()='" + productName + "']]//button");
+        WebElement button = Hooks.wait.until(ExpectedConditions.elementToBeClickable(removeButton));
+        ((JavascriptExecutor) Hooks.driver).executeScript("arguments[0].scrollIntoView({block: 'center'}); arguments[0].click();", button);
+        Hooks.wait.until(ExpectedConditions.textToBe(removeButton, "Add to cart"));
+    }
+
     @Then("Cart badge should show {string}")
     public void cart_badge_should_show(String expectedCount) {
         String actualCount = Hooks.wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("shopping_cart_badge"))).getText();
         Assert.assertEquals("Jumlah item cart tidak sesuai", expectedCount, actualCount);
+    }
+
+    @Then("Cart badge should not be displayed")
+    public void cart_badge_should_not_be_displayed() {
+        boolean isNotDisplayed = Hooks.wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("shopping_cart_badge")));
+        Assert.assertTrue("Badge cart masih tampil", isNotDisplayed);
     }
 
     @When("User clicks menu cart")
