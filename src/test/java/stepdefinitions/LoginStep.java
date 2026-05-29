@@ -68,6 +68,12 @@ public class LoginStep {
         Assert.assertTrue("User sukses masuk homepage", isDisplayed);
     }
 
+    @Then("User should see login error message {string}")
+    public void user_should_see_login_error_message(String expectedMessage) {
+        String actualMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-test='error']"))).getText();
+        Assert.assertEquals("Pesan error login tidak sesuai", expectedMessage, actualMessage);
+    }
+
     @When("User adds product {string} to cart")
     public void user_adds_product_to_cart(String productName) {
         By addToCartButton = By.xpath("//div[contains(@class,'inventory_item')][.//div[contains(@class,'inventory_item_name') and normalize-space()='" + productName + "']]//button");
