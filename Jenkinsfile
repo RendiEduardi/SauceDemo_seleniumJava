@@ -2,7 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Test') {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Clean') {
+            steps {
+                bat 'if exist allure-results rmdir /s /q allure-results'
+                bat 'if exist allure-report rmdir /s /q allure-report'
+            }
+        }
+
+        stage('Run Test') {
             steps {
                 bat 'mvn clean test'
             }
@@ -11,7 +25,9 @@ pipeline {
 
     post {
         always {
-            allure results: [[path: 'target/allure-results']]
+            allure([
+                results: [[path: 'allure-results']]
+            ])
         }
     }
 }
