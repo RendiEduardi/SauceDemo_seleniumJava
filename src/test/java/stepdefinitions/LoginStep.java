@@ -36,7 +36,7 @@ public class LoginStep {
     @Then("User in homepage menu")
     public void user_in_homepage_menu() {
         boolean isDisplayed = Hooks.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("inventory_container"))).isDisplayed();
-        Assert.assertTrue("User sukses masuk homepage", isDisplayed) //
+        Assert.assertTrue("User sukses masuk homepage", isDisplayed);
         //Assert.fail("Sengaja dibuat gagal untuk test Allure"); // Hanya untuk demo Allure report status error
     }
 
