@@ -57,7 +57,7 @@ public class LoginStep {
     public void user_removes_product_from_cart(String productName) {
         By removeButton = By.xpath("//div[contains(@class,'inventory_item') or contains(@class,'cart_item')][.//div[contains(@class,'inventory_item_name') and normalize-space()='" + productName + "']]//button");
         WebElement button = Hooks.wait.until(ExpectedConditions.elementToBeClickable(removeButton));
-        ((JavascriptExecutor) Hooks.driver).executeScript("arguments[0].scrollIntoView({block: 'center'}); arguments[0].click();", button) //test
+        ((JavascriptExecutor) Hooks.driver).executeScript("arguments[0].scrollIntoView({block: 'center'}); arguments[0].click();", button);
         Hooks.wait.until(ExpectedConditions.textToBe(removeButton, "Add to cart"));
     }
 
