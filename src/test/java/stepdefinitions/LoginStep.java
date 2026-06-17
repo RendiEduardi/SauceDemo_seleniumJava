@@ -20,7 +20,7 @@ public class LoginStep {
 
     @When("User enters username {string}")
     public void user_enters_username(String username) {
-        Hooks.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name"))).sendKeys(username)// test buat error
+        Hooks.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name"))).sendKeys(username);
     }
 
     @And("User enters password {string}")
@@ -36,7 +36,8 @@ public class LoginStep {
     @Then("User in homepage menu")
     public void user_in_homepage_menu() {
         boolean isDisplayed = Hooks.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("inventory_container"))).isDisplayed();
-        Assert.assertTrue("User sukses masuk homepage", isDisplayed);
+        //Assert.assertTrue("User sukses masuk homepage", isDisplayed);
+        Assert.fail("Sengaja dibuat gagal untuk test Allure");
     }
 
     @Then("User should see login error message {string}")
