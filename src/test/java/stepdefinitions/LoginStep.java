@@ -25,7 +25,7 @@ public class LoginStep {
 
     @And("User enters password {string}")
     public void user_enters_password(String password) {
-        Hooks.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password"))).sendKeys(password); //
+        Hooks.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password"))).sendKeys(password);
     }
 
     @And("User clicks login")
