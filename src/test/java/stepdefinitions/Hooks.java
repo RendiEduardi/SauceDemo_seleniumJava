@@ -6,6 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import io.cucumber.java.Scenario;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -38,9 +42,18 @@ public class Hooks {
     }
 
     @After
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
+    @After
+    public void tearDown(Scenario scenario) {
+
+        if (scenario.isFailed()) {
+            saveScreenshot();
         }
+
+        driver.quit();
     }
-}
+
+    @Attachment(value = "Failure Screenshot", type = "image/png")
+    public byte[] saveScreenshot() {
+        return ((TakesScreenshot) driver)
+                .getScreenshotAs(OutputType.BYTES);
+    }
