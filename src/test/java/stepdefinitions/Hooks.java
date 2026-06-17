@@ -3,9 +3,7 @@ package stepdefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import io.qameta.allure.Attachment;
 import org.openqa.selenium.*;
-
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -46,17 +44,18 @@ public class Hooks {
     public void tearDown(Scenario scenario) {
 
         if (scenario.isFailed()) {
-            saveScreenshot();
+            byte[] screenshot = ((TakesScreenshot) driver)
+                    .getScreenshotAs(OutputType.BYTES);
+
+            scenario.attach(
+                    screenshot,
+                    "image/png",
+                    "Failure Screenshot"
+            );
         }
 
         if (driver != null) {
             driver.quit();
         }
-    }
-
-    @Attachment(value = "Failure Screenshot", type = "image/png")
-    public byte[] saveScreenshot() {
-        return ((TakesScreenshot) driver)
-                .getScreenshotAs(OutputType.BYTES);
     }
 }
