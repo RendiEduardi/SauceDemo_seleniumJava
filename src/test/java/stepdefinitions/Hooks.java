@@ -44,15 +44,28 @@ public class Hooks {
     public void tearDown(Scenario scenario) {
 
         if (scenario.isFailed()) {
+
+            // 1. Screenshot
             byte[] screenshot = ((TakesScreenshot) driver)
                     .getScreenshotAs(OutputType.BYTES);
 
+            scenario.attach(screenshot, "image/png", "Failure Screenshot");
+
+            // 2. Page Source (HTML)
             scenario.attach(
-                    screenshot,
-                    "image/png",
-                    "Failure Screenshot"
+                    driver.getPageSource().getBytes(),
+                    "text/html",
+                    "Page Source"
+            );
+
+            // 3. Current URL
+            scenario.attach(
+                    driver.getCurrentUrl().getBytes(),
+                    "text/plain",
+                    "Current URL"
             );
         }
+
 
         if (driver != null) {
             driver.quit();
