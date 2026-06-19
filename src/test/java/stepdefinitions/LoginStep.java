@@ -16,6 +16,8 @@ public class LoginStep {
     @Given("User navigated to login page")
     public void user_navigated_to_login_page() {
         Hooks.driver.get("https://www.saucedemo.com/");
+        // Verifikasi halaman login terload dengan benar
+        Hooks.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-button")));
     }
 
     @When("User enters username {string}")
