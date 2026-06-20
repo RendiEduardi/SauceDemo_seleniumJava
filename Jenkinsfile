@@ -25,14 +25,11 @@ stages {
 
     stage('Copy Results') {
         steps {
-            bat '''
-            if not exist C:\\AutomationReports mkdir C:\\AutomationReports
-            xcopy target\\allure-results C:\\AutomationReports\\allure-results\\ /E /I /Y
-            '''
+            bat 'if not exist C:\\AutomationReports mkdir C:\\AutomationReports'
+            bat 'xcopy target\\allure-results C:\\AutomationReports\\allure-results\\ /E /I /Y'
         }
     }
-}
-
+    
 post {
     always {
 
